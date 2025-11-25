@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.shop.mapper.UserMapper">
+
+    <select id="findByUsername" parameterType="String" resultType="com.example.shop.entity.User">
+        SELECT id,
+               name AS username,
+               pwd AS password
+        FROM admin_info WHERE name = #{username}
+    </select>
+
+    <insert id="insert" parameterType="com.example.shop.entity.User">
+        INSERT INTO admin_info(name, pwd)
+        VALUES(#{username}, #{password})
+    </insert>
+
+    <select id="findAll" resultType="com.example.shop.entity.User">
+        SELECT id,
+               name AS username,
+               pwd AS password
+        FROM admin_info
+    </select>
+
+</mapper>
+
