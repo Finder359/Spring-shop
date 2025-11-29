@@ -6,8 +6,10 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
     User findByUsername(String username);
-
+    int update(User user);
     int insert(User user);
-
+    int delete(int id);
+    int batchDelete(List<Integer> ids);
+    User findById(int id);
     List<User> findAll();
 }
