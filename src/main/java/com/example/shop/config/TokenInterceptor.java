@@ -28,13 +28,18 @@ public class TokenInterceptor implements HandlerInterceptor {
         // 从请求头获取 token
         String token = request.getHeader("Authorization");
 
-        if (request.getMethod().equals("OPTIONS")) {
+        if (request.getMethod().equalsIgnoreCase("OPTIONS")) {
             return true;
         }
 
         if (token == null || token.isEmpty()) {
             response.setStatus(401);
             return false;
+        }
+
+        // 支持 Bearer 开头
+        if (token.startsWith("Bearer ")) {
+            token = token.substring(7);
         }
 
         try {
@@ -47,8 +52,8 @@ public class TokenInterceptor implements HandlerInterceptor {
                     .parseClaimsJws(token)
                     .getBody();
 
-            // 打印用户名（可选）
-            System.out.println("Token 用户：" + claims.getSubject());
+//            // 打印用户名（可选）
+//            System.out.println("Token 用户：" + claims.getSubject());
 
         } catch (Exception e) {
             // token 无效 或 过期

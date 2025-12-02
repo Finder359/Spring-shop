@@ -6,7 +6,7 @@
 这是一个学习 **Spring Boot** 的练习项目
 ---
 - 开辟学习Spring中……
-- 重构jsp+servlet
+- 重构jsp+servlet的老项目
 
 ---
 

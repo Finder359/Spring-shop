@@ -22,4 +22,12 @@ public class UserMapperTest {
             System.out.println(user.getId() + " - " + user.getUsername()+ " - " +user.getPassword());
         }
     }
+    
+    @Test
+    void testSQL(){
+        long t = System.currentTimeMillis();
+        List<User> users = userMapper.findAll();
+        System.out.println("执行时间：" + (System.currentTimeMillis() - t) + "ms");
+
+    }
 }

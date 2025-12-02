@@ -4,7 +4,6 @@ import com.example.shop.entity.User;
 import com.example.shop.mapper.UserMapper;
 import com.example.shop.service.UserService;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
@@ -124,6 +123,14 @@ public class UserController {
         }
         return resp;
     }
+
+    @GetMapping("/testSQL")
+    public void testSql() {
+        long t = System.currentTimeMillis();
+        userMapper.findAll();
+        System.out.println("SQL耗时：" + (System.currentTimeMillis() - t) + "ms");
+    }
+
 
 
 }
